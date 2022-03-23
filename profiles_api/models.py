@@ -7,13 +7,13 @@ from django.contrib.auth.models import BaseUserManager
 # Create your models here.
 
 
-class UserProfileManager():
+class UserProfileManager(BaseUserManager):
     """Manager for user profile"""
 
     def create_user(self, email, name, password=None):
         """Create a new user"""
         if not email:
-            raise ValueError("USer must have an emial address")
+            raise ValueError("User must have an email address")
 
         email = self.normalize_email(email)
         user = self.model(email=email, name=name)
@@ -23,7 +23,7 @@ class UserProfileManager():
 
         return user
 
-    def create_super_user(self, email, name, password):
+    def create_superuser(self, email, name, password):
         """create a new superuser with given details"""
 
         user = self.create_user(email, name, password)
@@ -31,7 +31,7 @@ class UserProfileManager():
         user.is_staff = True
         user.save(using=self._db)
 
-        return db
+        return user
 
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
