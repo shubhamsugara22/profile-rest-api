@@ -2,8 +2,8 @@ import email
 from pyexpat import model
 from unicodedata import name
 
-from attr import fields
-from questionary import password
+#from attr import fields
+#from questionary import password
 from rest_framework import serializers
 from profiles_api import models
 
@@ -15,7 +15,7 @@ class HelloSerializers(serializers.Serializer):
 
 # create userprofile serializer to overwrite existing models
 
-class UserProfileSerializer(serializers.ModelSerializers):
+class UserProfileSerializer(serializers.ModelSerializer):
     """Serializes a user profile object"""
 
     class Meta:
